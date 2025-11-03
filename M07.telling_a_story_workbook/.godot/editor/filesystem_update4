@@ -11,3 +11,5 @@ res://lessons/main_theme.tres
 res://dialogue.gd
 res://lessons/dialogue.tscn
 res://lessons/dialogue.gd
+res://lessons/expressions.tscn
+res://lessons/expressions.gd
