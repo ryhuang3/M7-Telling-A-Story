@@ -3,15 +3,37 @@ extends Control
 @onready var rich_text_label: RichTextLabel = %RichTextLabel
 @onready var next_button: Button = %NextButton
 @onready var audio_stream_player: AudioStreamPlayer = %AudioStreamPlayer
+@onready var body: TextureRect = %Body
+@onready var expression: TextureRect = %Expression
 
-var dialogue_items: Array[String] = [
-	"Good Morning!",
-	"It's a bit crowded in here eh?",
-	"And I'm a bit claustrophobic.",
-	"Let me out please!",
-	"What did I do to deserve this?",
-	"PLEASE!",
-	"NOOOOOOO",
+var expressions := {
+	"happy": preload ("res://assets/emotion_happy.png"),
+	"regular": preload ("res://assets/emotion_regular.png"),
+	"sad": preload ("res://assets/emotion_sad.png"),
+}
+
+var dialogue_items: Array[Dictionary] = [
+	{"expression": expressions["happy"],
+	"text": "Morning!",
+	},
+	{"expression": expressions["sad"],
+	"text": "It's a bit crowded in here eh?",
+	},
+	{"expression": expressions["sad"],
+	"text": "And I'm a bit claustrophobic.",
+	},
+	{"expression": expressions["regular"],
+	"text": "Let me out please!",
+	},
+	{"expression": expressions["sad"],
+	"text": "What did I do to deserve this?",
+	},
+	{"expression": expressions["sad"],
+	"text": "PLEASE!",
+	},
+	{"expression": expressions["sad"],
+	"text": "NOOOOOOO",
+	},
 ]
 var current_item_index := 0
 
@@ -21,7 +43,8 @@ func _ready() -> void:
 
 func show_text() -> void:
 	var current_item := dialogue_items[current_item_index]
-	rich_text_label.text = current_item
+	rich_text_label.text = current_item["text"]
+	expression.texture = current_item["expression"]
 	rich_text_label.visible_ratio = 0.0
 	var tween := create_tween()
 	var text_appearing_duration := 1.2
