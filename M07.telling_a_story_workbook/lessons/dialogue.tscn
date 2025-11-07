@@ -86,6 +86,7 @@ offset_right = 820.99994
 offset_bottom = 131.12
 grow_horizontal = 2
 grow_vertical = 2
+bbcode_enabled = true
 text = "Hello World!"
 fit_content = true
 
